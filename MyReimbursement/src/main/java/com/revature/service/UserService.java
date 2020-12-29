@@ -11,7 +11,7 @@ public class UserService {
 	
 	
 	public User validateUser(String user, String password) {
-
+			
 		User u = userD.findByUsername(user);
 		
 		if(u.getPassword().equals(password)) {

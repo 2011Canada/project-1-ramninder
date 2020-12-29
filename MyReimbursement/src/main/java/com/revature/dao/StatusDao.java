@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.revature.models.Status;
@@ -7,16 +8,16 @@ import com.revature.models.Status;
 
 public interface StatusDao {
 	
-	public List<Status> findAllStatus();
+	public List<Status> findAllStatus() throws SQLException;
 	
 	public Status findByStatusId(Integer id);
 	
 
-	public Status saveRoles(Status obj);
+	public Status saveStatus(Status obj);
 	
-	public Status updateRoles(Status obj);
+	public Status updateStatus(Status obj);
 	
-	public void deleteType(Status obj);
+	public void deleteStatus(Status obj);
 	
 
 

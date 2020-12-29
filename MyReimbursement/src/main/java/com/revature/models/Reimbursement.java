@@ -42,6 +42,20 @@ public class Reimbursement {
 
 
 
+	public Reimbursement(int amount, String description, Timestamp submitted, Timestamp resolved, int author, int resolver, int status_id, int type_id) {
+		
+		this.amount = amount;
+		this.description = description;
+		this.submitted = submitted;
+		this.resolved = resolved;
+		this.author = author;
+		this.resolver = resolver;
+		this.status_id = status_id;
+		this.type_id = type_id;
+		
+	}
+
+
 	public int getId() {
 		return id;
 	}

@@ -87,11 +87,13 @@ public class UserDaoImplementation implements UserDao{
 
 	@Override
 	public User findByUsername(String username) {
-User user = null;
+		User user = null;
 		
-		try(Connection conn = cf.getConnection()) {
+		try {
 			
-			String sql = "SELECT * FROM ERS_USERS WHERE ERS_USERNAME = ?";
+			Connection conn = cf.getConnection();
+			String sql = "SELECT * FROM \"ERS_USERS\" WHERE \"ERS_USERNAME\" = ?\n"
+					+ "";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1,  username);
