@@ -8,14 +8,13 @@ import com.revature.models.User;
 
 public class AllDaosTesting {
 
-	public static void main(String[] args) throws SQLException {
-		
-		
-		userDao();
-
-	}
-	
-	
+//	public static void main(String[] args) throws SQLException {
+//		
+//		
+//		userDao();
+//
+//	}
+//	
 	
 	
 	public static void userDao() throws SQLException {

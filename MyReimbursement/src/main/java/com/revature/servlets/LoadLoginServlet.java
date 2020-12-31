@@ -24,6 +24,7 @@ import com.revature.service.UserService;
 public class LoadLoginServlet extends HttpServlet {
 	
 	static UserService userServ = new UserService();
+	
 	static ReimburseService reimServ = new ReimburseService();
 	
 	static ReimburseDao reimburseDao = new ReimburseDaoImplementation();

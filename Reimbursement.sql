@@ -4,6 +4,8 @@
 --create schema reimbursement;
 set schema 'reimbursement';
 
+INSERT INTO "ERS_REIMBURSEMENT_TYPE" ("REIMB_TYPE_ID", "REIMB_TYPE") values();
+
 
 
 create table "ERS_REIMBURSEMENT" (

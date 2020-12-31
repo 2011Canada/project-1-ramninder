@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+ import static java.lang.System.*;
 
 
 
@@ -19,6 +20,7 @@ public class FrontController extends HttpServlet {
 		
 		String resourcepath = directControl(req, resp) + ".html";
 		System.out.println(resourcepath);
+		out.println();
 		
 		req.getRequestDispatcher(resourcepath).forward(req, resp);
 		

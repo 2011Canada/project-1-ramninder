@@ -1,15 +1,23 @@
 /**
  * 
  */
-
 window.onload = function() {
 	
 	loadHomeView();
-
-	$('#login').on('click', loadLoginView);
-	$('#logout').on('click', logoutSession);
-
 	
+	let loginButton = document.getElementById("login");
+	loginButton.addEventListener('click',  ()=>{
+
+		 loadLoginView();
+	});
+
+	let logoutButton = document.getElementById("logout");
+	logoutButton.addEventListener('click',  ()=>{
+
+		 logoutSession();
+	});
+	
+
 }
 
 function logoutSession() {
@@ -18,6 +26,9 @@ function logoutSession() {
 	xhr.onreadystatechange = function () {
 		
 		if(xhr.readyState == 4 && xhr.status == 200) {
+			
+			
+			document.getElementById("view").innerhtml=this.responseText
 			
 			$('#view').html(xhr.responseText);
 			
@@ -37,7 +48,9 @@ function loadHomeView() {
 		
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			
-			$('#view').html(xhr.responseText);
+			//returning response as html page 
+			document.getElementById("view").innerHTML = this.responseText
+			//$('#view').html(xhr.responseText);
 			
 		}
 		
@@ -56,24 +69,37 @@ function loadLoginView() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			
 			//do things with response
-			$('#view').html(xhr.responseText);
-			$('#signin').on('click', login);
+			document.getElementById("view").innerHTML = this.responseText;
+			
+			let signInButton = document.getElementById("signin");
+			
+			signInButton.addEventListener('click',()=>{
+				
+				login();
+			})
+		
+			//doing things with jquery.
+			//$('#view').html(xhr.responseText);
+			//$('#signin').on('click', login);
 			
 		}
 		
 	}
 	
-	xhr.open("GET", "login.view", true);
+	xhr.open("GET", "login.view", false);
 	xhr.send();
 	
 }
 
 function login() {
+	
+	let username = document.getElementById("username").value
+	let password = document.getElementById("password").value
 		
 	let user = {
 			
-		username: $('#username').val(),
-		password: $('#password').val()
+		username: username,
+		password: password
 	
 	};
 	
@@ -82,7 +108,9 @@ function login() {
 		
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			
-			$('#view').html(xhr.responseText);
+			
+			document.getElementById("view").innerHTML = this.responseText;	
+			//$('#view').html(xhr.responseText);
 //			loadReimbursements();
 			loadVIEW();
 			
@@ -107,20 +135,22 @@ function loadVIEW() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			
 			$('#view').html(xhr.responseText);
-//			loadManagerView();
+			//loadEmployeeView();
 			
 			
 		}
 		
 	}
 	
-	xhr.open("GET", "test.view", true);
+	xhr.open("GET", "", true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.send();
 	
 }
 
-function loadManagerView () {
+
+
+/*function loadManagerView () {
 	
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
@@ -155,4 +185,4 @@ function loadEmployeeView () {
 	xhr.open("GET", "employee.view", true);
 	xhr.send();
 	
-}
+}*/
