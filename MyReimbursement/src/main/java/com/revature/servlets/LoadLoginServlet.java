@@ -30,7 +30,7 @@ public class LoadLoginServlet extends HttpServlet {
 	static ReimburseDao reimburseDao = new ReimburseDaoImplementation();
 
 	static UserDao userDao = new UserDaoImplementation();
-	
+
 		
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,33 +41,37 @@ public class LoadLoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ObjectMapper om = new ObjectMapper();
-		User u = om.readValue(req.getInputStream(), User.class);
+		User user = om.readValue(req.getInputStream(), User.class);
 		//validating users existence.
+		System.out.println(user.getUsername()+ "///// "+user.getPassword());
+
 		
-		u = userServ.validateUser(u.getUsername(), u.getPassword());
+		user = userServ.validateUser(user.getUsername(), user.getPassword());
+
 		
-		
-		if(u == null) {
-			
+		if(user == null) {
+			System.out.println("I entered if null block");
+
 			req.getRequestDispatcher("error-login.html").forward(req, resp);
+			
 
 		}
 		
 		else {
-			
+			System.out.println("I entered else session block");
+
 			HttpSession session = req.getSession();
-			session.setAttribute("user", u);
-			System.out.println(u.getRole_id());
-			if(u.getRole_id() == 1) {
+			session.setAttribute("user", user);
+			System.out.println(user.getRole_id());
+			if(user.getRole_id() == 1) {
 				
 				resp.sendRedirect("manager.html");
 				
 			}
 			else {
-				System.out.println(u.getRole_id());
+				System.out.println(user.getRole_id());
 				
 				resp.sendRedirect("employee.html");
-				
 				
 			}
 			

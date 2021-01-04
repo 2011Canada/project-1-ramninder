@@ -37,7 +37,7 @@ public class ConnectionFactory {
 		String url = "jdbc:postgresql://revaturecanada.cibiqoktknnw.us-east-2.rds.amazonaws.com:5432"
 				+ "/postgres?currentSchema=reimbursement";
 		
-		String user = "postgres";
+		String user = "";
 		String password = "";
 
 		try {

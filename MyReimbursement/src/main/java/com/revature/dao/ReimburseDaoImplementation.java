@@ -139,8 +139,10 @@ public class ReimburseDaoImplementation implements ReimburseDao{
 
 			conn.setAutoCommit(false);
 			
-			String sql = "INSERT INTO \"ERS_REIMBURSEMENT\" (\"REIMB_AMOUNT\", \"REIMB_DESCRIPTION\", \"REIMB_SUBMITTED\", \"REIMB_RESOLVED\", \"REIMB_AUTHOR\", \"REIMB_RESOLVER\", \"REIMB_STATUS_ID\", \"REIMB_TYPE_ID\")\"\n"
-					+ "					+ \" VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO \"ERS_REIMBURSEMENT\" (\"REIMB_AMOUNT\", \"REIMB_DESCRIPTION\",\n"
+					+ "\"REIMB_SUBMITTED\", \"REIMB_RESOLVED\", \"REIMB_AUTHOR\", \n"
+					+ "\"REIMB_RESOLVER\", \"REIMB_STATUS_ID\", \"REIMB_TYPE_ID\")\n"
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			String[] keyNames = {"REIMB_ID"};
 			

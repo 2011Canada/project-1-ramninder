@@ -1,27 +1,19 @@
 /**
  * 
- */
-
-/**
- * 
- */
-
-
-$(() =>{
-		
-		loadReimbursements();
-		
-		let sumbitReimbursement = document.getElementById("sumbit_reim");
-		sumbitReimbursement.addEventListener('click',()=>{
-			
-			console.log("Button was clicked") 
+ */			
+		window.onload = function(){
+		let submitReimbursement = document.getElementById("submitReimbusrement");
+		submitReimbursement.addEventListener('click',()=>{
+			console.log("you clicked me");
 			createReim();
+			location.reload(true);
 		});
-		//$('#submit_reim').on('click', createReim);
-		
-	})
 	
-	function createReim() {
+		loadReimbursements();
+	}
+		
+
+	 function createReim() {
 	
 		/* REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_AUTHOR, REIMB_RESOLVER, REIMB_STATUS_ID, REIMB_TYPE_ID) */
 		let time = new Date().getTime()
@@ -30,7 +22,7 @@ $(() =>{
 		let type = document.getElementById("dataType").value
 		
 		
-		var obj = {
+		let obj = {
 			
 			amount: amount,
 			description:description,
@@ -42,22 +34,16 @@ $(() =>{
 			type_id: type
 			
 			
-			//amount: $('#reimb_amount').val(),
-			//description: $('#reimb_desc').val(),
-			//submitted: time,
-			//resolved: null,
-			//author: 1,
-	 		//resolver: 2,
-			//status_id: 3,
-			//type_id: $('#dataType').val()
-	
+			
 		}
-		
-		var toSend = JSON.stringify(obj);
+
+
+		console.log(obj);
+
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function () {
 			
-			if(xhr.readyState == 4) {
+			if(xhr.readyState == 4 && xhr.status == 200) {
 				console.log("inside create");
 				console.log("create", toSend);
 				loadEmployeeReims();
@@ -66,11 +52,16 @@ $(() =>{
 			
 		}
 		
-		xhr.open("POST", "eCreate.view", true);
-		xhr.send(toSend);
+		xhr.open("POST", "create", false);
+		xhr.setRequestHeader("Content-type", "application/json");
+		var toSend = JSON.stringify(obj);
+		xhr.send(toSend);	
+	}
+		
+		
 		
 	
-	}
+
 	function loadReimbursements() {
 		
 		console.log('inside reimburse');
@@ -94,7 +85,7 @@ $(() =>{
 			
 		}
 		
-		xhr.open("GET", "eCreate.view", true);
+		xhr.open("GET", "create", true);
 		xhr.send();
 		
 	}
@@ -118,7 +109,7 @@ $(() =>{
 			
 		}
 		
-		xhr.open("GET", "employee.view", true);
+		xhr.open("GET", "employee", true);
 		xhr.send();
 		
 	}
@@ -176,7 +167,7 @@ $(() =>{
 					<th>${reims.id}</th>
 					<td>${reims.amount}</td>
 					<td>${submitTime}</td>
-					<td>${reims.resolved}</td>
+					
 					<td>${reims.description}</td>
 					<td>${reims.author}</td>
 					<td>${status}</td>

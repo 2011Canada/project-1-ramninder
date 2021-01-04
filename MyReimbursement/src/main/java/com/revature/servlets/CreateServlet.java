@@ -53,11 +53,18 @@ public class CreateServlet extends HttpServlet {
 		ObjectMapper om = new ObjectMapper();
 		Reimbursement reimburse = om.readValue(req.getInputStream(), Reimbursement.class);
 		
+		
+		
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("user");
 		
-		reimburse.setAuthor(user.getId());
+		System.out.println(user.getId());
+
 		
+		reimburse.setAuthor(user.getId());
+		//reimburse.setAuthor(1);
+
+		System.out.println("you reached here");
 		reimburse = rDao.save(reimburse);
 		
 	}

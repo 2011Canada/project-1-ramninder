@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.postgresql.util.PSQLException;
+
 import com.revature.models.User;
 import com.revature.util.ConnectionFactory;
 
@@ -86,7 +88,7 @@ public class UserDaoImplementation implements UserDao{
 	}
 
 	@Override
-	public User findByUsername(String username) {
+	public User findByUsername(String username)  {
 		User user = null;
 		
 		try {

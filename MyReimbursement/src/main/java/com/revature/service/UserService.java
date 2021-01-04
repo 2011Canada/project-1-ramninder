@@ -11,15 +11,29 @@ public class UserService {
 	
 	
 	public User validateUser(String user, String password) {
-			
-		User u = userD.findByUsername(user);
 		
-		if(u.getPassword().equals(password)) {
+		if(user.equals("") || password.equals("")) {
+			System.out.println("went first if");
+
+			return null;
+		}
+		
+		else {
+			
+			System.out.println("went second else");
+
+		User u = userD.findByUsername(user);
+		if(u == null) {
+			return null;
+		}
+		
+		if(u.getPassword().equals(password) && u.getUsername().equals(user)) {
 			
 			return u;
 			
 		}
-	
+		
+		}
 		return null;
 		
 	}

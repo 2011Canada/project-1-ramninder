@@ -2,9 +2,6 @@
  * 
  */
 window.onload = function() {
-	
-	loadHomeView();
-	
 	let loginButton = document.getElementById("login");
 	loginButton.addEventListener('click',  ()=>{
 
@@ -17,6 +14,7 @@ window.onload = function() {
 		 logoutSession();
 	});
 	
+	loadHomeView();
 
 }
 
@@ -36,7 +34,7 @@ function logoutSession() {
 		
 	}
 	
-	xhr.open("GET", "logout", true);
+xhr.open("GET", "logout", true);
 	xhr.send();	
 	
 }
@@ -49,8 +47,8 @@ function loadHomeView() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			
 			//returning response as html page 
-			document.getElementById("view").innerHTML = this.responseText
-			//$('#view').html(xhr.responseText);
+			//document.getElementById("view").innerhtml = this.responseText
+			$('#view').html(xhr.responseText);
 			
 		}
 		
@@ -75,12 +73,9 @@ function loadLoginView() {
 			
 			signInButton.addEventListener('click',()=>{
 				
-				login();
+				login(event);
 			})
 		
-			//doing things with jquery.
-			//$('#view').html(xhr.responseText);
-			//$('#signin').on('click', login);
 			
 		}
 		
@@ -91,11 +86,14 @@ function loadLoginView() {
 	
 }
 
-function login() {
+function login(event) {
+
+	event.preventDefault();
 	
 	let username = document.getElementById("username").value
 	let password = document.getElementById("password").value
 		
+	console.log("i am login")
 	let user = {
 			
 		username: username,
@@ -108,11 +106,11 @@ function login() {
 		
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			
-			
-			document.getElementById("view").innerHTML = this.responseText;	
+			//document.getElementById("view").outerHTML = this.responseText;
+		window.location = this.responseURL
 			//$('#view').html(xhr.responseText);
 //			loadReimbursements();
-			loadVIEW();
+			//loadVIEW();
 			
 		}
 		
@@ -133,16 +131,15 @@ function loadVIEW() {
 	xhr.onreadystatechange = function () {
 		
 		if(xhr.readyState == 4 && xhr.status == 200) {
-			
-			$('#view').html(xhr.responseText);
-			//loadEmployeeView();
-			
+
+		document.getElementById("view").innerHTML = this.responseText;
+						
 			
 		}
 		
 	}
 	
-	xhr.open("GET", "", true);
+	xhr.open("GET", "create", true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.send();
 	
@@ -150,39 +147,39 @@ function loadVIEW() {
 
 
 
-/*function loadManagerView () {
+// function loadManagerView () {
 	
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function () {
+// 	var xhr = new XMLHttpRequest();
+// 	xhr.onreadystatechange = function () {
 		
-		if(xhr.readyState == 4 && xhr.status == 200) {
+// 		if(xhr.readyState == 4 && xhr.status == 200) {
 			
-			$('#view').html(xhr.responseText);
-			console.log("inside loadManagerView");
+// 			$('#view').html(xhr.responseText);
+// 			console.log("inside loadManagerView");
 			
-		}
+// 		}
 		
-	}
+// 	}
 	
-	xhr.open("GET", "manager.view", true);
-	xhr.send();
+// 	xhr.open("GET", "manager.view", true);
+// 	xhr.send();
 	
-}
+// }
 
-function loadEmployeeView () {
+// function loadEmployeeView () {
 	
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function () {
+// 	var xhr = new XMLHttpRequest();
+// 	xhr.onreadystatechange = function () {
 		
-		if(xhr.readyState == 4 && xhr.status == 200) {
+// 		if(xhr.readyState == 4 && xhr.status == 200) {
 			
-			$('#view').html(xhr.responseText);
+// 			$('#view').html(xhr.responseText);
 			
-		}
+// 		}
 		
-	}
+// 	}
 	
-	xhr.open("GET", "employee.view", true);
-	xhr.send();
+// 	xhr.open("GET", "employee.view", true);
+// 	xhr.send();
 	
-}*/
+// }

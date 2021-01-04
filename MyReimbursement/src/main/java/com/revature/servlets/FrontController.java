@@ -49,10 +49,9 @@ public class FrontController extends HttpServlet {
 		case "/Reimbursement/employee.view":
 			return "employee";
 			
-		case "/Reimbursement/eCreate.view":
+		case "/Reimbursement/create.view":
 			return "create";
-			
-			
+		
 		}
 		
 		return null;

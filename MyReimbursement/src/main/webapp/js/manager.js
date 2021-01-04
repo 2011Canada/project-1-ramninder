@@ -122,7 +122,7 @@ $(() =>{
 					<th>${reims.id}</th>
 					<td>${reims.amount}</td>
 					<td>${submitTime}</td>
-					<td>${reims.resolved}</td>
+				
 					<td>${reims.description}</td>
 					<td>${reims.author}</td>
 					<td id = "status${reims.id}">${status}</td>
